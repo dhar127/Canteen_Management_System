@@ -1,0 +1,66 @@
+/* Container styling */
+.dashboard-container {
+  background: linear-gradient(135deg, #ffffff, #fff5e6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Card styling */
+.dashboard-card {
+  background-color: #ffffff;
+  border: 2px solid #ffa500;
+  border-radius: 20px;
+  padding: 40px;
+  width: 600px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: slideIn 0.8s ease-out;
+}
+
+/* Title */
+.dashboard-title {
+  color: #ff6600;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Subtext or welcome message */
+.dashboard-subtext {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Buttons (if any) */
+.dashboard-button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  margin: 0 10px;
+}
+
+.dashboard-button:hover {
+  background-color: #e65c00;
+  transform: scale(1.05);
+}
+
+/* Slide Animation (same as login) */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

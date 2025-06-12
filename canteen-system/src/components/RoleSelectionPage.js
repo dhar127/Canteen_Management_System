@@ -11,9 +11,9 @@ const RoleSelectionPage = () => {
         <h1 className="title">Welcome to Canteen Management System</h1>
         <p className="subtitle">Please select your role to continue</p>
         <div className="buttons">
-          <button onClick={() => navigate("/customer")}>Continue as Customer</button>
-          <button onClick={() => navigate("/canteen")}>Continue as Canteen</button>
-          <button onClick={() => navigate("/admin")}>Continue as Admin</button>
+          <button onClick={() => navigate("/login/customer")}>Continue as Customer</button>
+          <button onClick={() => navigate("/login/canteen")}>Continue as Canteen</button>
+          <button onClick={() => navigate("/login/admin")}>Continue as Admin</button>
         </div>
       </div>
     </div>
