@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import RoleSelectionPage from "./components/RoleSelectionPage";
+//import LoginPage from "./components/LoginPage";
+import AdminRoutes from "./modules/admin/routes";
+import CanteenRoutes from "./modules/canteen/routes";
+import CustomerRoutes from "./modules/customer/routes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<RoleSelectionPage />} />
+       {/* <Route path="/login" element={<LoginPage />} />*/}
+        <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="/canteen/*" element={<CanteenRoutes />} />
+        <Route path="/customer/*" element={<CustomerRoutes />} />
+      </Routes>
+    </Router>
   );
 }
 
