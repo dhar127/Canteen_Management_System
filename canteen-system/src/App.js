@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import RoleSelectionPage from "./components/RoleSelectionPage";
 //import LoginPage from "./components/LoginPage";
-import AdminRoutes from "./modules/admin/routes";
-import CanteenRoutes from "./modules/canteen/routes";
+import AdminRoutes from "./modules/admin/AdminDashboard";
+import CanteenRoutes from "./modules/canteen/CanteenRequestForm";
 import CustomerRoutes from "./modules/customer/routes";
 
 function App() {
