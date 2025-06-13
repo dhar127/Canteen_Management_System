@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./LoginPage.css"; // Reuse same CSS for consistency
+import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "axios";
+import "./LoginPage.css"; // Reuse login styles
 
 const SignupPage = () => {
+  const { role } = useParams(); // customer, admin, canteen
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -14,33 +16,36 @@ const SignupPage = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
 
-    // TODO: Send data to backend for MongoDB storage
-    alert("Signup successful!");
-    navigate("/login");
-  };
+    try {
+      const res = await axios.post("http://localhost:5000/api/signup", {
+        ...formData,
+        role,
+      });
 
-  const handleForgotPassword = () => {
-    // Simulate code sending
-    alert(`Code sent to ${formData.email} and ${formData.phone}`);
-  };
-
-  const handleSocialSignup = (platform) => {
-    alert(`Signing up with ${platform}...`);
+      if (res.data.message === "Signup successful") {
+        alert("Signup successful. You can now login.");
+        navigate(`/login/${role}`);
+      }
+    } catch (error) {
+      alert(
+        error.response?.data?.message || "Signup failed. Try again."
+      );
+    }
   };
 
   return (
     <div className="login-container">
       <div className="login-card animate-slide">
-        <h2 className="login-title">Sign Up</h2>
+        <h2 className="login-title">{`Sign Up as ${role.charAt(0).toUpperCase() + role.slice(1)}`}</h2>
         <input
           type="text"
           name="name"
@@ -93,13 +98,7 @@ const SignupPage = () => {
           Sign Up
         </button>
         <div className="login-links">
-          <a href="#" onClick={handleForgotPassword}>Forgot Password?</a>
-        </div>
-        <div className="social-signup">
-          <p>Or sign up with:</p>
-          <button onClick={() => handleSocialSignup("Google")}>Google</button>
-          <button onClick={() => handleSocialSignup("Facebook")}>Facebook</button>
-          <button onClick={() => handleSocialSignup("Twitter")}>Twitter</button>
+          Already have an account? <Link to={`/login/${role}`}>Login</Link>
         </div>
       </div>
     </div>
