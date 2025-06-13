@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./RoleSelectionPage.css"; // Import CSS
+import "./RoleSelectionPage.css";
 
 const RoleSelectionPage = () => {
   const navigate = useNavigate();
@@ -8,12 +8,12 @@ const RoleSelectionPage = () => {
   return (
     <div className="role-selection-container">
       <div className="role-card animate-slide">
-        <h1 className="title">Welcome to Canteen Management System</h1>
-        <p className="subtitle">Please select your role to continue</p>
+        <h1 className="title">🍔 Canteen Management System</h1>
+        <p className="subtitle">Select your role to continue</p>
         <div className="buttons">
-          <button onClick={() => navigate("/login/customer")}>Continue as Customer</button>
-          <button onClick={() => navigate("/login/canteen")}>Continue as Canteen</button>
-          <button onClick={() => navigate("/login/admin")}>Continue as Admin</button>
+          <button onClick={() => navigate("/login/customer")}>👤 Customer</button>
+          <button onClick={() => navigate("/login/canteen")}>🏪 Canteen</button>
+          <button onClick={() => navigate("/login/admin")}>🛠️ Admin</button>
         </div>
       </div>
     </div>

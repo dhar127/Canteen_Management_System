@@ -6,8 +6,9 @@ import LoginPage from "./components/LoginPage";
 import AdminRoutes from "./modules/admin/routes";
 import CanteenRoutes from "./modules/canteen/routes";
 //import LoginPage from "./components/LoginPage";
-
+import SignupPage from "./components/SignupPage";
 import CustomerRoutes from "./modules/customer/routes";
+import ForgotPasswordPage from "./components/ForgotPasswordPage";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
     <Route path="/canteen/*" element={<CanteenRoutes />} />
     <Route path="/customer/*" element={<CustomerRoutes />} />
     <Route path="/login/:role" element={<LoginPage />} />
+     <Route path="/signup/:role" element={<SignupPage />} /> 
+     <Route path="/forgot-password" element={<ForgotPasswordPage />} />
   </Routes>
 </Router>
 
