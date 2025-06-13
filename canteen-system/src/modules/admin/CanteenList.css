@@ -1,0 +1,58 @@
+.canteen-list-page {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #fffef8, #ffe8cc);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.canteen-page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ff6600;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.empty-state {
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+  margin-top: 40px;
+}
+
+.canteen-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.canteen-card {
+  background: #fff;
+  border-left: 5px solid #28a745;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.canteen-card.rejected {
+  border-left-color: #dc3545;
+}
+
+.canteen-card:hover {
+  transform: translateY(-4px);
+}
+
+.canteen-card h3 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.canteen-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}

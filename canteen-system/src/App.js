@@ -9,6 +9,13 @@ import CanteenRoutes from "./modules/canteen/routes";
 import SignupPage from "./components/SignupPage";
 import CustomerRoutes from "./modules/customer/routes";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
+import CanteenRequestForm from "./modules/canteen/CanteenRequestForm";
+import ManageMenu from "./modules/canteen/ManageMenu";
+import RequestDetails from './modules/admin/RequestDetails';
+import AdminDashboard from './modules/admin/Dashboard';
+import AcceptedCanteens from "./modules/admin/AcceptedCanteen";
+import RejectedCanteens from "./modules/admin/RejectedCanteen";
+
 
 function App() {
   return (
@@ -21,6 +28,12 @@ function App() {
     <Route path="/login/:role" element={<LoginPage />} />
      <Route path="/signup/:role" element={<SignupPage />} /> 
      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/canteen/request-form" element={<CanteenRequestForm />} />   
+    <Route path="/canteen/manage-menu" element={<ManageMenu/>} />
+    <Route path="/admin/dashboard" element={<AdminDashboard />} />
+    <Route path="/admin/request/:id" element={<RequestDetails />} />
+    <Route path="/admin/accepted" element={<AcceptedCanteens />} />
+    <Route path="/admin/rejected" element={<RejectedCanteens />} />
   </Routes>
 </Router>
 
