@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RoleSelectionPage from "./components/RoleSelectionPage";
-
 import LoginPage from "./components/LoginPage";
 import AdminRoutes from "./modules/admin/routes";
 import CanteenRoutes from "./modules/canteen/routes";
@@ -15,8 +14,7 @@ import RequestDetails from './modules/admin/RequestDetails';
 import AdminDashboard from './modules/admin/Dashboard';
 import AcceptedCanteens from "./modules/admin/AcceptedCanteen";
 import RejectedCanteens from "./modules/admin/RejectedCanteen";
-
-
+import ViewOrders from "./modules/canteen/ViewOrders";
 function App() {
   return (
    <Router>
@@ -34,6 +32,7 @@ function App() {
     <Route path="/admin/request/:id" element={<RequestDetails />} />
     <Route path="/admin/accepted" element={<AcceptedCanteens />} />
     <Route path="/admin/rejected" element={<RejectedCanteens />} />
+    <Route path="/canteen/view-orders" element={<ViewOrders />} />
   </Routes>
 </Router>
 

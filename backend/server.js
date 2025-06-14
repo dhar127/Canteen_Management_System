@@ -6,6 +6,8 @@ import authRoutes from "./routes/authRoutes.js";
 import canteenRoutes from "./routes/canteenRoutes.js";
 import menuRoutes from "./routes/menuRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import browserRoutes from "./routes/browserRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -76,6 +78,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/canteen", canteenRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/browse", browserRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Health check route with more detailed info
 app.get("/", (req, res) => {
@@ -90,13 +94,17 @@ app.get("/", (req, res) => {
       "Menu Management with Image URLs", 
       "Admin Panel with Analytics",
       "Google Image URL Support",
-      "Role-based Access Control"
+      "Role-based Access Control",
+      "Menu Browsing & Search",
+      "Order Management System"
     ],
     endpoints: {
       auth: "/api/auth",
       canteen: "/api/canteen", 
       menu: "/api/menu",
-      admin: "/api/admin"
+      admin: "/api/admin",
+      browse: "/api/browse",
+      orders: "/api/orders"
     }
   });
 });
@@ -136,7 +144,14 @@ app.use("*", (req, res) => {
   res.status(404).json({ 
     message: "Route not found",
     requestedPath: req.originalUrl,
-    availableRoutes: ["/api/auth", "/api/canteen", "/api/menu", "/api/admin"]
+    availableRoutes: [
+      "/api/auth", 
+      "/api/canteen", 
+      "/api/menu", 
+      "/api/admin", 
+      "/api/browse", 
+      "/api/orders"
+    ]
   });
 });
 
@@ -171,7 +186,7 @@ process.on('SIGTERM', async () => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log('🎯 Features: Authentication + Canteen Management + Menu System + Admin Panel');
+  console.log('🎯 Features: Authentication + Canteen Management + Menu System + Admin Panel + Browse + Orders');
   console.log(`📡 Health check: http://localhost:${PORT}/`);
   console.log(`⚡ API status: http://localhost:${PORT}/api/status`);
 });

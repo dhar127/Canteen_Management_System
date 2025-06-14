@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   // CRITICAL: Always initialize as empty array
   const [requests, setRequests] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -102,8 +104,17 @@ const AdminDashboard = () => {
     handleRefresh();
   };
 
+  // Updated to navigate to RequestDetails page
   const handleViewRequest = (requestId) => {
-    alert(`Viewing request ${requestId}`);
+    navigate(`/admin/request/${requestId}`);
+  };
+
+  // Navigate to RequestDetails for approve/reject actions
+  const handleQuickAction = (requestId, action) => {
+    // You can pass the intended action as state to the RequestDetails page
+    navigate(`/admin/request/${requestId}`, { 
+      state: { quickAction: action } 
+    });
   };
 
   const handleShowAll = () => {
@@ -215,7 +226,6 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
-
 
       <div className="requests-summary">
         <div className="summary-card total">
@@ -338,14 +348,14 @@ const AdminDashboard = () => {
                             <button 
                               className="view-btn"
                               style={{ marginLeft: '5px', background: '#28a745' }}
-                              onClick={() => {/* Handle approve */}}
+                              onClick={() => handleQuickAction(request._id || request.id, 'approve')}
                             >
                               ✅ Approve
                             </button>
                             <button 
                               className="view-btn"
                               style={{ marginLeft: '5px', background: '#dc3545' }}
-                              onClick={() => {/* Handle reject */}}
+                              onClick={() => handleQuickAction(request._id || request.id, 'reject')}
                             >
                               ❌ Reject
                             </button>
