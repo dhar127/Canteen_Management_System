@@ -1,0 +1,380 @@
+/* ViewOrders.css */
+
+.view-orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.view-orders-header {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-top h1 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.back-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background: #5a6268;
+}
+
+.refresh-button {
+  background: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: #138496;
+}
+
+.refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-button.refreshing {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.filter-section label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.status-filter {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.loading-container, .error-container, .no-orders {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.error-container h2 {
+  color: #dc3545;
+  margin-bottom: 10px;
+}
+
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-id h3 {
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.order-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+}
+
+.customer-section, .items-section, .payment-section, .notes-section {
+  margin-bottom: 15px;
+}
+
+.customer-section h4, .items-section h4 {
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 5px;
+}
+
+.customer-info {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.customer-info p {
+  margin: 5px 0;
+}
+
+.items-list {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.9rem;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.item-details {
+  color: #6c757d;
+  text-align: right;
+}
+
+.order-total {
+  text-align: right;
+  color: #28a745;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 10px 0;
+  border-top: 2px solid #28a745;
+}
+
+.payment-section {
+  background: #e9ecef;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.payment-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.notes-section {
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #ffc107;
+}
+
+.notes-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #856404;
+}
+
+.order-actions {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  flex: 1;
+  min-width: 120px;
+}
+
+.action-button.confirm {
+  background: #28a745;
+  color: white;
+}
+
+.action-button.confirm:hover {
+  background: #218838;
+}
+
+.action-button.cancel {
+  background: #dc3545;
+  color: white;
+}
+
+.action-button.cancel:hover {
+  background: #c82333;
+}
+
+.action-button.preparing {
+  background: #fd7e14;
+  color: white;
+}
+
+.action-button.preparing:hover {
+  background: #e36d00;
+}
+
+.action-button.ready {
+  background: #20c997;
+  color: white;
+}
+
+.action-button.ready:hover {
+  background: #1ba085;
+}
+
+.action-button.delivered {
+  background: #6f42c1;
+  color: white;
+}
+
+.action-button.delivered:hover {
+  background: #5a35a0;
+}
+
+.timestamps {
+  border-top: 1px solid #e9ecef;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.timestamps small {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .view-orders-container {
+    padding: 10px;
+  }
+  
+  .orders-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-top {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .header-top h1 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .order-status {
+    align-self: flex-start;
+  }
+  
+  .payment-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .order-actions {
+    flex-direction: column;
+  }
+  
+  .action-button {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .item-details {
+    text-align: left;
+  }
+}

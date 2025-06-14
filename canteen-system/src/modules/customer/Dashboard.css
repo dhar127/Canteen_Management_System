@@ -1,60 +1,121 @@
+/* Dashboard Container */
 .customer-dashboard-container {
-  background: linear-gradient(135deg, #ffffff, #fff5e6);
-  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fff3e0, #ffe0b2);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 60px 20px;
   font-family: 'Poppins', sans-serif;
+  animation: fadeSlide 0.8s ease-in-out;
 }
 
+/* Dashboard Card */
 .customer-dashboard-card {
-  background-color: #ffffff;
-  border: 2px solid #ffa500;
-  border-radius: 20px;
-  padding: 40px;
-  width: 600px;
-  max-width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  padding: 40px 35px;
+  max-width: 520px;
+  width: 100%;
   text-align: center;
-  animation: slideIn 0.8s ease-out;
+  border: 1px solid rgba(255, 193, 7, 0.4);
+  transition: transform 0.3s ease;
 }
 
+.customer-dashboard-card:hover {
+  transform: scale(1.01);
+}
+
+/* Title */
 .customer-dashboard-title {
-  color: #ff6600;
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 36px;
+  color: #e65100;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
+/* Subtitle */
 .customer-dashboard-subtext {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 30px;
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 28px;
 }
 
+/* Buttons Container */
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Buttons */
 .customer-dashboard-button {
-  background-color: #ff6600;
-  color: white;
+  background: linear-gradient(135deg, #ffa726, #fb8c00);
+  color: #fff;
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 14px 20px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.2s ease;
-  margin: 0 10px;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
 }
 
 .customer-dashboard-button:hover {
-  background-color: #e65c00;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #fb8c00, #ef6c00);
+  transform: translateY(-3px);
 }
 
-@keyframes slideIn {
+/* Optional Floating Image */
+.dashboard-image {
+  width: 100%;
+  max-width: 280px;
+  margin: 25px auto;
+  animation: float 4s ease-in-out infinite;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeSlide {
   0% {
-    transform: translateY(-30px);
     opacity: 0;
+    transform: translateY(40px);
   }
   100% {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .customer-dashboard-card {
+    padding: 30px 22px;
+  }
+
+  .customer-dashboard-title {
+    font-size: 26px;
+  }
+
+  .customer-dashboard-subtext {
+    font-size: 15px;
+  }
+
+  .customer-dashboard-button {
+    font-size: 15px;
+    padding: 12px 16px;
   }
 }

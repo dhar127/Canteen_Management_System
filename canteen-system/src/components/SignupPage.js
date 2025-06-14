@@ -1,105 +1,115 @@
+// SignupPage.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./LoginPage.css"; // Reuse same CSS for consistency
+import { useParams, useNavigate } from "react-router-dom";
+import "./LoginPage.css";
 
 const SignupPage = () => {
+  const { role } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     username: "",
     password: "",
-    confirmPassword: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSignup = () => {
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
+  const handleSignup = async () => {
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.username || !formData.password) {
+      alert("Please fill in all required fields");
       return;
     }
+if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
+  alert("Please enter a valid 10-digit phone number");
+  return;
+}
 
-    // TODO: Send data to backend for MongoDB storage
-    alert("Signup successful!");
-    navigate("/login");
-  };
+if (formData.username.length > 20) {
+  alert("Username must be 20 characters or fewer");
+  return;
+}
 
-  const handleForgotPassword = () => {
-    // Simulate code sending
-    alert(`Code sent to ${formData.email} and ${formData.phone}`);
-  };
+    setLoading(true);
+    try {
+      // Use full URL to backend server
+      const res = await fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, role }),
+      });
 
-  const handleSocialSignup = (platform) => {
-    alert(`Signing up with ${platform}...`);
+      const data = await res.json();
+      console.log("Signup response:", data);
+
+      if (res.ok) {
+        alert("Signup successful! Please login.");
+        navigate(`/login/${role}`);
+      } else {
+        alert(data.message || "Signup failed");
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("Network error. Please check if the server is running.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="login-container">
       <div className="login-card animate-slide">
-        <h2 className="login-title">Sign Up</h2>
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
+        <h2 className="login-title">Sign Up as {role}</h2>
+        <input 
+          name="name" 
+          placeholder="Full Name *" 
+          onChange={handleChange} 
           className="login-input"
-          value={formData.name}
-          onChange={handleChange}
+          required
         />
-        <input
+        <input 
+          name="email" 
           type="email"
-          name="email"
-          placeholder="Email"
+          placeholder="Email *" 
+          onChange={handleChange} 
           className="login-input"
-          value={formData.email}
-          onChange={handleChange}
+          required
         />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
+        <input 
+          name="phone" 
+          placeholder="Phone" 
+          onChange={handleChange} 
+          className="login-input" 
+        />
+        <input 
+          name="username" 
+          placeholder="Username *" 
+          onChange={handleChange} 
           className="login-input"
-          value={formData.phone}
-          onChange={handleChange}
+          required
         />
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
+        <input 
+          name="password" 
+          type="password" 
+          placeholder="Password *" 
+          onChange={handleChange} 
           className="login-input"
-          value={formData.username}
-          onChange={handleChange}
+          required
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="login-input"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          className="login-input"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-        <button className="login-button" onClick={handleSignup}>
-          Sign Up
+        <button 
+          onClick={handleSignup} 
+          className="login-button"
+          disabled={loading}
+        >
+          {loading ? "Signing Up..." : "Sign Up"}
         </button>
         <div className="login-links">
-          <a href="#" onClick={handleForgotPassword}>Forgot Password?</a>
-        </div>
-        <div className="social-signup">
-          <p>Or sign up with:</p>
-          <button onClick={() => handleSocialSignup("Google")}>Google</button>
-          <button onClick={() => handleSocialSignup("Facebook")}>Facebook</button>
-          <button onClick={() => handleSocialSignup("Twitter")}>Twitter</button>
+          <a href={`/login/${role}`}>Already have an account? Login</a>
         </div>
       </div>
     </div>
