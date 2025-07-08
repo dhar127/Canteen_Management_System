@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
+import foodBanner from './food-dashboard.jpg';
+
 
 const CustomerDashboard = () => {
   return (
@@ -10,13 +12,7 @@ const CustomerDashboard = () => {
     <p className="customer-dashboard-subtext">
       Craving something delicious? Let’s explore your options!
     </p>
-
-    <img
-      src="/images/food-dashboard.png"
-      alt="Food Banner"
-      className="dashboard-image"
-    />
-
+<img src={foodBanner} alt="Food Banner" className="dashboard-image" />
     <div className="dashboard-buttons">
       <Link to="/customer/browse" className="customer-dashboard-button">
         🍽 Browse Menu

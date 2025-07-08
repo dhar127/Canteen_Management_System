@@ -15,9 +15,13 @@ import AdminDashboard from './modules/admin/Dashboard';
 import AcceptedCanteens from "./modules/admin/AcceptedCanteen";
 import RejectedCanteens from "./modules/admin/RejectedCanteen";
 import ViewOrders from "./modules/canteen/ViewOrders";
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 function App() {
   return (
    <Router>
+   <Header/>
   <Routes>
     <Route path="/" element={<RoleSelectionPage />} />
     <Route path="/admin/*" element={<AdminRoutes />} />
@@ -34,6 +38,7 @@ function App() {
     <Route path="/admin/rejected" element={<RejectedCanteens />} />
     <Route path="/canteen/view-orders" element={<ViewOrders />} />
   </Routes>
+  <Footer/>
 </Router>
 
   );
